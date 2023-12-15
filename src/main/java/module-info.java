@@ -7,4 +7,5 @@ module com.example.modul6 {
 //    exports com.example.modul6;
     exports com.example.modul6.Latihan;
     exports com.example.modul6.Praktikum;
+    exports com.example.modul6.Praktikum2;
 }
