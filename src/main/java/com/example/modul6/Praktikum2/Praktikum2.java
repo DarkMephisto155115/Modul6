@@ -175,7 +175,7 @@ public class Praktikum2 extends Application {
         switchToFormButton.setPrefWidth(100);
         switchToFormButton.setOnAction(event -> {
             primaryStage.setScene(formScene);
-            primaryStage.setTitle("Biodata Mahasiswa");
+            primaryStage.setTitle("Form - Jadwal Dosen");
         });
 
         final Button Clearbutton = new Button("Clear");
@@ -208,17 +208,19 @@ public class Praktikum2 extends Application {
     }
 
     private boolean validateInput() {
-        boolean valid;
+        boolean valid = false;
         String nama = addName.getText();
-        String nim = addGKB.getText();
-        String email = addMataKuliah.getText();
-        String fakultas = addWaktu.getText();
+        String gkb = addGKB.getText();
+        String mataKuliah = addMataKuliah.getText();
+        String waktu = addWaktu.getText();
         String jurusan = addRuangan.getText();
-        if (nama.isEmpty() || nim.isEmpty() || email.isEmpty()|| fakultas.isEmpty()||jurusan.isEmpty()) {
+        if (nama.isEmpty() || gkb.isEmpty() || mataKuliah.isEmpty()|| waktu.isEmpty()||jurusan.isEmpty()) {
             showEmptyFieldAlert();
             valid = false;
-        }else {valid = true;
-        }
+        } else if (!cekAngka(gkb) || !cekAngka(waktu)) {
+            showAngkaInvalid();
+            valid = false;
+        }else {valid = true;}
         return valid;
     }
 
@@ -237,11 +239,11 @@ public class Praktikum2 extends Application {
         alert.setContentText("Email Yang Dimasukkan Tidak Valid!\nEmail harus berakhiran @webmail.umm.ac.id");
         alert.showAndWait();
     }
-    private void showNIMInvalid() {
+    private void showAngkaInvalid() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Peringatan");
         alert.setHeaderText(null);
-        alert.setContentText("NIM harus berupa angka!");
+        alert.setContentText("GKB atau Waktu harus berupa angka!");
         alert.showAndWait();
     }
 
@@ -277,5 +279,7 @@ public class Praktikum2 extends Application {
         alert.setContentText("Berhasil Menambahkan Data");
         alert.showAndWait();
     }
-
+    private static boolean cekAngka(String angka){
+        return angka.matches("\\d+");
+    }
 }

@@ -1,7 +1,4 @@
 package com.example.modul6.Praktikum;
-
-
-
 import javafx.beans.property.SimpleStringProperty;
 
 public class Mahasiswa {
